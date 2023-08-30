@@ -1,0 +1,99 @@
+{
+  "Avoir":  {
+    "english": "To have",
+    "type": "Irregular",
+    "conjugation": {
+      "j": "J'ai",
+      "tu": "Tu as",
+      "il": "il/elle/on a",
+      "nous": "nous avons",
+      "vous": "vous avez",
+      "ils": "ont"
+    }
+  },
+  "Etre":  {
+    "english": "To be",
+    "type": "Irregular",
+    "conjugation": {
+      "j": "Je suis",
+      "tu": "Tu es",
+      "il": "il/elle est",
+      "nous": "nous sommes",
+      "vous": "vous etes",
+      "ils": "sont"
+    }
+  },
+  "Aller":  {
+    "english": "To go",
+    "type": "Irregular",
+    "conjugation": {
+      "j": "Je Vais",
+      "tu": "Tu vas",
+      "il": "il/elle va",
+      "nous": "nous allons",
+      "vous": "vous allex",
+      "ils": "vont"
+    }
+  },
+  "Dire":  {
+    "english": "To say",
+    "type": "Irregular",
+    "conjugation": {
+      "j": "Je dis",
+      "tu": "Tu dis",
+      "il": "il/elle dit",
+      "nous": "nous disons",
+      "vous": "vous dites",
+      "ils": "ils/elles disent"
+    }
+  },
+  "Faire":  {
+    "english": "To do/to make",
+    "type": "Irregular",
+    "conjugation": {
+      "j": "Je fais",
+      "tu": "Tu fais",
+      "il": "il/elle fait",
+      "nous": "nous faisons",
+      "vous": "vous faites",
+      "ils": "ils/elles font"
+    }
+  },
+  "Voir":  {
+    "english": "To see",
+    "type": "Irregular",
+    "conjugation": {
+      "j": "Je vois",
+      "tu": "Tu vois",
+      "il": "il/elle voit",
+      "nous": "nous voyons",
+      "vous": "vous voyez",
+      "ils": "ils/ellesvoient"
+    }
+  },
+  "Pouvoir":  {
+    "english": "Can",
+    "type": "Irregular",
+    "conjugation": {
+      "j": "Je peux",
+      "tu": "Tu peux",
+      "il": "il/elle peut",
+      "nous": "nous pouvons",
+      "vous": "vous pouvez",
+      "ils": "ils/elles peuvent"
+    }
+  },
+  "Prendre":  {
+    "english": "take",
+    "type": "Irregular",
+    "conjugation": {
+      "j": "Je prends",
+      "tu": "Tu prends",
+      "il": "il/elle prend",
+      "nous": "nous prenons",
+      "vous": "vous prenez",
+      "ils": "ils/elles prennent"
+    }
+  }
+
+}
