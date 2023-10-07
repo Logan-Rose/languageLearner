@@ -5,10 +5,10 @@
     "conjugation": {
       "j": "J'ai",
       "tu": "Tu as",
-      "il": "il/elle/on a",
+      "il/elle/on": "il/elle/on a",
       "nous": "nous avons",
       "vous": "vous avez",
-      "ils": "ont"
+      "ils/elles": "ont"
     }
   },
   "Etre":  {
@@ -17,22 +17,22 @@
     "conjugation": {
       "j": "Je suis",
       "tu": "Tu es",
-      "il": "il/elle est",
-      "nous": "nous sommes",
-      "vous": "vous etes",
-      "ils": "sont"
+      "il/elle/on": "il/elle/on est",
+      "nous": "Nous sommes",
+      "vous": "Vous etes",
+      "ils/elles": "sont"
     }
   },
   "Aller":  {
     "english": "To go",
     "type": "Irregular",
     "conjugation": {
-      "j": "Je Vais",
+      "j": "Je vais",
       "tu": "Tu vas",
-      "il": "il/elle va",
-      "nous": "nous allons",
-      "vous": "vous allex",
-      "ils": "vont"
+      "il/elle/on": "Il/Elle/On va",
+      "nous": "Nous allons",
+      "vous": "Vous allez",
+      "ils": "ils/elles vont"
     }
   },
   "Dire":  {
@@ -68,7 +68,7 @@
       "il": "il/elle voit",
       "nous": "nous voyons",
       "vous": "vous voyez",
-      "ils": "ils/ellesvoient"
+      "ils": "ils/elles voient"
     }
   },
   "Pouvoir":  {
@@ -77,9 +77,9 @@
     "conjugation": {
       "j": "Je peux",
       "tu": "Tu peux",
-      "il": "il/elle peut",
-      "nous": "nous pouvons",
-      "vous": "vous pouvez",
+      "il": "il/elle/on peut",
+      "nous": "Nous pouvons",
+      "vous": "Vous pouvez",
       "ils": "ils/elles peuvent"
     }
   },
@@ -94,6 +94,197 @@
       "vous": "vous prenez",
       "ils": "ils/elles prennent"
     }
+  },
+  "Devoir":  {
+    "english": "to have to",
+    "type": "Irregular",
+    "conjugation": {
+      "j": "Je dois",
+      "tu": "Tu dois",
+      "il": "il/elle doit",
+      "nous": "Nous devons",
+      "vous": "Vous devex",
+      "ils": "Ils/elles dois"
+    }
+  },
+  "Mettre":  {
+    "english": "To put",
+    "type": "Irregular",
+    "conjugation": {
+      "j": "Je Mets",
+      "tu": "Tu MEts",
+      "il": "il/elle/on met ",
+      "nous": "Nous mettons",
+      "vous": "Vous mettez",
+      "ils": "Ils/elles mettent"
+    }
+  },
+  "donner":  {
+    "english": "To give",
+    "type": "Irregular",
+    "conjugation": {
+      "j": "Je donne",
+      "tu": "Tu donnes",
+      "il": "il/elle donnen",
+      "nous": "Nous donnons",
+      "vous": "Vous donnez",
+      "ils": "Ils/elles donnent"
+    }
+  },
+  "Vouloir":  {
+    "english": "To want",
+    "type": "Irregular",
+    "conjugation": {
+      "j": "Je veux",
+      "tu": "Tu veux",
+      "il": "il/elle vent",
+      "nous": "Nous voulons",
+      "vous": "Vous voulez",
+      "ils": "Ils/elles voulent"
+    }
+  }, 
+  "Savoir":  {
+    "english": "",
+    "type": "Irregular",
+    "conjugation": {
+      "j": "Je sait",
+      "tu": "Tu sais",
+      "il": "il/elle saient",
+      "nous": "Nous Sa",
+      "vous": "Vous ",
+      "ils": "Ils/elles "
+    }
+  },
+  "Demander":  {
+    "english": "To ask",
+    "type": "Irregular",
+    "conjugation": {
+      "j": "Je demande",
+      "tu": "Tu demandes",
+      "il": "il/elle demande",
+      "nous": "Nous demandons",
+      "vous": "Vous demandez",
+      "ils": "Ils/elles demandent"
+    }
+  },
+  "Trouver":  {
+    "english": "To find",
+    "type": "Irregular",
+    "conjugation": {
+      "j": "Je trouve",
+      "tu": "Tu trouves",
+      "il": "il/elle trouve",
+      "nous": "Nous trouvons",
+      "vous": "Vous trouvez",
+      "ils": "Ils/elles trouvent"
+    }
+  },
+  "Rendre":  {
+    "english": "to give back, to return",
+    "type": "Irregular",
+    "conjugation": {
+      "j": "Je rends",
+      "tu": "Tu rends",
+      "il": "il/elle rend",
+      "nous": "Nous rendons",
+      "vous": "Vous rendez",
+      "ils": "Ils/elles rendent"
+    }
+  },
+  "Venir":  {
+    "english": "to come",
+    "type": "Irregular",
+    "conjugation": {
+      "j": "Je viens",
+      "tu": "Tu viens",
+      "il": "il/elle vient",
+      "nous": "Nous venons",
+      "vous": "Vous venez",
+      "ils": "Ils/elles viennent"
+    }
+  },
+  "Passer":  {
+    "english": "to pass, spend, go",
+    "type": "Irregular",
+    "conjugation": {
+      "j": "Je passe",
+      "tu": "Tu passes",
+      "il": "il/elle passe",
+      "nous": "Nous passons",
+      "vous": "Vous passez",
+      "ils": "Ils/elles passent"
+    }
+  },
+  "Comprendre":  {
+    "english": "to understand",
+    "type": "Irregular",
+    "conjugation": {
+      "j": "Je cemprends",
+      "tu": "Tu comprends",
+      "il": "il/elle comprends",
+      "nous": "Nous comprendons",
+      "vous": "Vous comprendez",
+      "ils": "Ils/elles comprendont"
+    }
+  },
+  "Rester":  {
+    "english": "To Rest",
+    "type": "Irregular",
+    "conjugation": {
+      "j": "Je reste",
+      "tu": "Tu restes",
+      "il": "il/elle reste",
+      "nous": "Nous restons",
+      "vous": "Vous restez",
+      "ils": "Ils/elles restent"
+    }
+  },
+  "Tenir":  {
+    "english": "to keep",
+    "type": "Irregular",
+    "conjugation": {
+      "j": "Je tiens",
+      "tu": "Tu tiens",
+      "il": "il/elle tient",
+      "nous": "Nous tenons",
+      "vous": "Vous tenez ",
+      "ils": "Ils/elles tiennent"
+    }
+  },
+  "Porter":  {
+    "english": "To wear, to carry",
+    "type": "Irregular",
+    "conjugation": {
+      "j": "Je porte",
+      "tu": "Tu portes",
+      "il": "il/elle porte",
+      "nous": "Nous portons",
+      "vous": "Vous portez",
+      "ils": "Ils/elles portent"
+    }
+  },
+  "Parler":  {
+    "english": "To speak",
+    "type": "Irregular",
+    "conjugation": {
+      "j": "Je parle",
+      "tu": "Tu parles",
+      "il": "il/elle parle",
+      "nous": "Nous parlons",
+      "vous": "Vous parlez",
+      "ils": "Ils/elles parlent"
+    }
+  },
+  "Montrer":  {
+    "english": "To show",
+    "type": "Irregular",
+    "conjugation": {
+      "j": "Je montre",
+      "tu": "Tu montres",
+      "il": "il/elle montre",
+      "nous": "Nous montrons",
+      "vous": "Vous montrez",
+      "ils": "Ils/elles montrent"
+    }
   }
-
 }
