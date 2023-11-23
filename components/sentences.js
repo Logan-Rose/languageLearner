@@ -1,26 +1,25 @@
 import { StatusBar } from "expo-status-bar";
 import { Button, StyleSheet, Text, View, Modal, Pressable } from "react-native";
-import verbs from "../verbs.json";
 import words from "../words.json";
-import sampleSentences from "../sample.json";
 import { collection, getDocs, query, orderBy, limit } from "firebase/firestore";
 import { useState } from "react";
 
-export default function Verbs(props) {
+export default function Sentences(props) {
   const frenchWords = Object.keys(words);
   const [french, setFrench] = useState("");
   const [conjugatedFrench, setConjugatedFrench] = useState("");
   const [english, setEnglish] = useState("");
   const [conjugation, setConjugation] = useState({});
-
+  const [displayedWord, setDisplayedWord] = useState("");
+  const [answered, setAnswered] = useState(false)
   const [modalVisible, setModalVisible] = useState(false);
 
   async function updateWord() {
-    const verbRef = collection(props.db, "Verbs");
+    const verbRef = collection(props.db, "Common words");
     const q = query(verbRef, orderBy("English", "desc"), limit(1));
+    console.log('L:OGAN')
     const dbWords = await getDocs(q)
       .then((querySnapshot) => {
-        console.log('ici');
         const docs = [];
         querySnapshot.forEach((doc) => {
           docs.push(doc.data());
@@ -28,10 +27,11 @@ export default function Verbs(props) {
         return docs;
       })
       .catch((e) => {
-        console.log('hhsdjasdh');
         console.log(e);
       });
+    console.log('fffffff')
     console.log(dbWords);
+
     // const index = Math.floor(Math.random() * frenchWords.length);
     // setFrench(frenchWords[index]);
     // setEnglish(words[frenchWords[index]].english);
@@ -40,15 +40,24 @@ export default function Verbs(props) {
     setConjugation(dbWord["Present"]);
     setFrench(dbWord["French"]);
     setEnglish(dbWord["English"]);
-
+    setDisplayedWord(dbWord["French"]);
     // setConjugation(words[frenchWords[index]].conjugation);
   }
 
   function pressButton(subject, fr) {
-    // setFrench(fr);
-    // setEnglish(eng);
-    setConjugatedFrench(`${subject} ${fr}`);
-    setModalVisible();
+    if(answered == false){
+      setDisplayedWord(english)
+      setAnswered(true)
+    } else {
+      setAnswered(false)
+     updateWord();
+    }
+  }
+  
+  const responseStyle= {
+    backgroundColor: "grey",
+    margin: 6,
+    padding:4 
   }
 
   return (
@@ -81,47 +90,50 @@ export default function Verbs(props) {
             justifyContent: "center",
           }}
         >
-          <Text style={{ color: "black", textAlign: "center" }}>{french}</Text>
-          <Button
-            style={{ backgroundColor: "red" }}
-            title="Translation"
-            color="#841573"
+          <Pressable
+            style={{
+                alignItems: 'center',
+                justifyContent: 'center',
+                paddingVertical: 12,
+                paddingHorizontal: 32,
+                borderRadius: 4,
+                elevation: 3,
+                width: 300,
+                height: 300,
+                backgroundColor: "gray",
+                borderRadius: 18
+            }}
             onPress={() => {
               pressButton(`${french}: ${english}`);
             }}
-          ></Button>
-        </View>
-        <View
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            width: 300,
-            alignSelf: "center",
-          }}
-        >
-          <View
-            style={{
-              display: "flex",
-              flex: 1,
-            }}
           >
-            {conjugation &&
-              Object.keys(conjugation).map((key) => (
-                <Button
-                  key={key}
-                  title={key}
-                  color="#841573"
-                  onPress={() => {
-                    pressButton(key, conjugation[key]);
-                  }}
-                ></Button>
-              ))}
-          </View>
+          <Text style={{fontSize: 24, color: "white"}}>{displayedWord}</Text>
+        </Pressable>
         </View>
+        { answered && <View style={{display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
+          <Pressable style={responseStyle}>
+            <Text>Hardest</Text>
+          </Pressable>
+          <Pressable style={responseStyle}>
+            <Text>Harder</Text>
+          </Pressable>
+          <Pressable style={responseStyle}>
+            <Text>Hard</Text>
+          </Pressable>
+          <Pressable style={responseStyle}>
+            <Text>alright</Text>
+          </Pressable>
+          <Pressable style={responseStyle}>
+            <Text>easy</Text>
+          </Pressable>
+          <Pressable style={responseStyle}>
+            <Text>easiest</Text>
+          </Pressable>
+        </View> }
         <View>
           <Button
             style={{ backgroundColor: "red" }}
-            title="Nouveau Mot"
+            title="Nouvelle Mot"
             color="#841573"
             onPress={() => {
               updateWord();

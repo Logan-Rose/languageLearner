@@ -13,6 +13,7 @@ import {
   listCollections,
 } from "firebase/firestore";
 import Verbs from "./components/verbs";
+import Sentences from "./components/sentences";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { FontAwesome } from "@expo/vector-icons";
 // Initialize Firebase
@@ -45,7 +46,7 @@ export default function App() {
             onPress={() => {
               setMode("verb");
             }}
-            title="Verb Mode"
+            title="Verb Modee"
           ></Button>
           <Button
             onPress={() => {
@@ -56,11 +57,8 @@ export default function App() {
         </View>
       )}
       {verbMode() && <Verbs db={db}></Verbs>}
-      {sentenceMode() && (
-        <View>
-          <Text>HELLo</Text>
-        </View>
-      )}
+
+      {sentenceMode() && <Sentences db={db}></Sentences>}
       {!homeMode() && (
         <View
           style={{
