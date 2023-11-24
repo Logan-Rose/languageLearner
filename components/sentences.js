@@ -41,6 +41,7 @@ export default function Sentences(props) {
     setFrench(dbWord["French"]);
     setEnglish(dbWord["English"]);
     setDisplayedWord(dbWord["French"]);
+    setAnswered(false)
     // setConjugation(words[frenchWords[index]].conjugation);
   }
 
@@ -48,16 +49,20 @@ export default function Sentences(props) {
     if(answered == false){
       setDisplayedWord(english)
       setAnswered(true)
-    } else {
-      setAnswered(false)
-     updateWord();
     }
   }
   
   const responseStyle= {
     backgroundColor: "grey",
     margin: 6,
-    padding:4 
+    flexGrow: 1,
+    padding:4,
+    borderRadius: 8
+  }
+
+  function submitFeedback(val){
+   console.log(val)
+   updateWord() 
   }
 
   return (
@@ -79,12 +84,14 @@ export default function Sentences(props) {
       <View
         style={{
           justifyContent: "space-around",
-          height: "50%",
         }}
       >
         <View
           style={{
-            width: 300,
+            width: 375,
+            height: 625,
+            backgroundColor: '#484848',
+            borderRadius: 16,
             display: "flex",
             alignSelf: "center",
             justifyContent: "center",
@@ -98,47 +105,34 @@ export default function Sentences(props) {
                 paddingHorizontal: 32,
                 borderRadius: 4,
                 elevation: 3,
-                width: 300,
-                height: 300,
-                backgroundColor: "gray",
+                flexGrow: 5,
+                backgroundColor: "#484848",
                 borderRadius: 18
             }}
             onPress={() => {
               pressButton(`${french}: ${english}`);
             }}
           >
-          <Text style={{fontSize: 24, color: "white"}}>{displayedWord}</Text>
-        </Pressable>
-        </View>
-        { answered && <View style={{display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
-          <Pressable style={responseStyle}>
-            <Text>Hardest</Text>
+            <Text style={{fontSize: 24, color: "white"}}>{displayedWord}</Text>
           </Pressable>
-          <Pressable style={responseStyle}>
-            <Text>Harder</Text>
-          </Pressable>
-          <Pressable style={responseStyle}>
-            <Text>Hard</Text>
-          </Pressable>
-          <Pressable style={responseStyle}>
-            <Text>alright</Text>
-          </Pressable>
-          <Pressable style={responseStyle}>
-            <Text>easy</Text>
-          </Pressable>
-          <Pressable style={responseStyle}>
-            <Text>easiest</Text>
-          </Pressable>
-        </View> }
-        <View>
-          <Button
-            style={{ backgroundColor: "red" }}
-            title="Nouvelle Mot"
-            color="#841573"
-            onPress={() => {
-              updateWord();
-            }}
-          ></Button>
+          <View style={{flexGrow: 1, flexGrow: 1}}>
+            { answered &&
+              <View style={{ flexGrow: 1, flexDirection: "row", justifyContent: "space-between"}}>
+                <Pressable onPress={() =>{submitFeedback(0)}} style={{...responseStyle, backgroundColor: "#FF6666"}}>
+                  <Text></Text>
+                </Pressable>
+                <Pressable onPress={() =>{submitFeedback(1)}} style={{...responseStyle, backgroundColor: "#FFB266"}}>
+                  <Text></Text>
+                </Pressable>
+                <Pressable onPress={() =>{submitFeedback(2)}} style={{...responseStyle, backgroundColor: "#FFFF66"}}>
+                  <Text></Text>
+                </Pressable>
+                <Pressable onPress={() =>{submitFeedback(3)}} style={{...responseStyle, backgroundColor: "#B2FF66"}}>
+                  <Text></Text>
+                </Pressable>
+              </View> 
+            }
+          </View>
         </View>
       </View>
 
@@ -150,8 +144,10 @@ export default function Sentences(props) {
 const styles = StyleSheet.create({
   container: {
     flex: 6,
-    backgroundColor: "#fff",
     alignItems: "center",
+    width: "100%",
+    height: "100%",
+    backgroundColor: "#383838",
     justifyContent: "center",
   },
   centeredView: {

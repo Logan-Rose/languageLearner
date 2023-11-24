@@ -89,5 +89,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     padding: "0",
     margin: "0",
+    backgroundColor: "#383838"
   },
 });
