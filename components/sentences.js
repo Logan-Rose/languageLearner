@@ -1,8 +1,9 @@
 import { StatusBar } from "expo-status-bar";
+import {calculateSM2Score } from "../utils.js"
 import { Button, StyleSheet, Text, View, Modal, Pressable } from "react-native";
 import words from "../words.json";
-import { collection, getDocs, query, orderBy, limit } from "firebase/firestore";
-import { useState } from "react";
+import { collection, doc, setDoc, getDocs, query, orderBy, limit } from "firebase/firestore";
+import { useState, useEffect} from "react";
 
 export default function Sentences(props) {
   const frenchWords = Object.keys(words);
@@ -13,34 +14,36 @@ export default function Sentences(props) {
   const [displayedWord, setDisplayedWord] = useState("");
   const [answered, setAnswered] = useState(false)
   const [modalVisible, setModalVisible] = useState(false);
-
+  const [key, setKey] = useState({})
+  const [info, setInfo] = useState({})
   async function updateWord() {
     const verbRef = collection(props.db, "Common words");
-    const q = query(verbRef, orderBy("English", "desc"), limit(1));
-    console.log('L:OGAN')
+    const q = query(verbRef, orderBy("scheduled"), limit(1));
     const dbWords = await getDocs(q)
       .then((querySnapshot) => {
         const docs = [];
         querySnapshot.forEach((doc) => {
-          docs.push(doc.data());
+          docs.push({key: doc._key, data: doc.data()});
         });
         return docs;
       })
       .catch((e) => {
         console.log(e);
       });
-    console.log('fffffff')
-    console.log(dbWords);
 
     // const index = Math.floor(Math.random() * frenchWords.length);
     // setFrench(frenchWords[index]);
     // setEnglish(words[frenchWords[index]].english);
     // setConjugation(words[frenchWords[index]].conjugation);
-    const dbWord = dbWords[0];
+    console.log(dbWords)
+    const dbWord = dbWords[0].data;
+    const key = dbWords[0].key
+    setKey(key)
+    setInfo(dbWord)
     setConjugation(dbWord["Present"]);
-    setFrench(dbWord["French"]);
-    setEnglish(dbWord["English"]);
-    setDisplayedWord(dbWord["French"]);
+    setFrench(dbWord["french"]);
+    setEnglish(dbWord["english"]);
+    setDisplayedWord(dbWord["french"]);
     setAnswered(false)
     // setConjugation(words[frenchWords[index]].conjugation);
   }
@@ -57,14 +60,49 @@ export default function Sentences(props) {
     margin: 6,
     flexGrow: 1,
     padding:4,
-    borderRadius: 8
+    borderRadius: 8,
+    alignItems: "center",
+    justifyContent: "center",
+  }
+
+  const buttonLabelStyle = {
+    fontSize: 20,
+    fontWeight: "bold"
   }
 
   function submitFeedback(val){
-   console.log(val)
-   updateWord() 
-  }
+    
+    const oldRepititions = info['repititions']
+    const oldEasiness = info['easiness']
+    const oldInterval = info['interval'] 
 
+    const {repititions, easiness, interval }= calculateSM2Score(val, oldRepititions, oldEasiness, oldInterval)
+    console.log(easiness)
+    const segments = key.path.segments
+    if(english, french, repititions, easiness, interval){
+      setDoc(doc(props.db, "Common words", segments[segments.length-1]), {
+        english: english,
+        french: french,
+        repititions: repititions,
+        easiness: easiness,
+        interval: interval,
+        scheduled: new Date(new Date().getTime() + ((interval+1) * 86400000))
+      }).then((res)=>{
+        updateWord()
+      }).catch((e)=>{
+        console.log("Failed") 
+        updateWord() 
+      })
+    }
+  }
+ 
+  useEffect(() => {
+    async function setWord(){
+      await updateWord()
+    }
+    setWord()
+  }, [])
+  
   return (
     <View style={styles.container}>
       <Modal visible={modalVisible}>
@@ -115,21 +153,28 @@ export default function Sentences(props) {
           >
             <Text style={{fontSize: 24, color: "white"}}>{displayedWord}</Text>
           </Pressable>
-          <View style={{flexGrow: 1, flexGrow: 1}}>
+          <View style={{height: 100}}>
             { answered &&
               <View style={{ flexGrow: 1, flexDirection: "row", justifyContent: "space-between"}}>
                 <Pressable onPress={() =>{submitFeedback(0)}} style={{...responseStyle, backgroundColor: "#FF6666"}}>
-                  <Text></Text>
+                  <Text style={buttonLabelStyle}>-3</Text>
                 </Pressable>
                 <Pressable onPress={() =>{submitFeedback(1)}} style={{...responseStyle, backgroundColor: "#FFB266"}}>
-                  <Text></Text>
+                  <Text style={buttonLabelStyle}>-2</Text>
                 </Pressable>
                 <Pressable onPress={() =>{submitFeedback(2)}} style={{...responseStyle, backgroundColor: "#FFFF66"}}>
-                  <Text></Text>
+                  <Text style={buttonLabelStyle}>-1</Text>
                 </Pressable>
                 <Pressable onPress={() =>{submitFeedback(3)}} style={{...responseStyle, backgroundColor: "#B2FF66"}}>
-                  <Text></Text>
+                  <Text style={buttonLabelStyle}>+1</Text>
                 </Pressable>
+                <Pressable onPress={() =>{submitFeedback(4)}} style={{...responseStyle, backgroundColor: "#B2FF66"}}>
+                  <Text style={buttonLabelStyle}>+2</Text>
+                </Pressable>
+                 <Pressable onPress={() =>{submitFeedback(5)}} style={{...responseStyle, backgroundColor: "#B2FF66"}}>
+                  <Text style={buttonLabelStyle}>+3</Text>
+                </Pressable>
+ 
               </View> 
             }
           </View>
